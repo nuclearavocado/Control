@@ -18,7 +18,7 @@ class CartPole:
                              m_c=5,
                              l=2,
                              x_0=[0, 0, np.pi, 0],
-                             g=-9.81,
+                             g=9.81,
                              manipulator_eqns=False):
         """
             # Arguments:
@@ -32,7 +32,7 @@ class CartPole:
                     x_0[1] = initial x-axis velocity of the cart, `x_dot`.
                     x_0[2] = initial angle of the pole, `theta`.
                     x_0[3] = initial angular velocity of the pole, `theta_dot`.
-                g (int): force due to gravity.
+                g (int): scalar force due to gravity.
                 manipulator_eqns (bool): choose whether to solve the environment
                     by inverting the manipulator equations, or by solving
                     directly for the accelerations. The math is different, but
@@ -71,8 +71,8 @@ class CartPole:
         if not self.manipulator_eqns:
             den = (m_c + m_p*s**2)
             q_ddot = np.zeros((2,1))
-            q_ddot[0] = (1/den)*(u + m_p*s*(l*x[3]**2 - g*c))
-            q_ddot[1] = (1/(l*den))*(-u*c - m_p*l*x[3]**2*c*s + (m_c + m_p)*g*s)
+            q_ddot[0] = (1/den)*(u + m_p*s*(l*x[3]**2 + g*c))
+            q_ddot[1] = (1/(l*den))*(-u*c - m_p*l*x[3]**2*c*s - (m_c + m_p)*g*s)
         else:
             # Mass matrix
             M = np.array([[ m_c + m_p,  m_p*l*c ],
@@ -81,8 +81,8 @@ class CartPole:
             C = np.array([[ 0, -m_p*l*x[3]*s],
                           [ 0,  0           ]])
             # Torque
-            tau_g = g*np.array([[ 0      ],
-                                [ m_p*l*s]])
+            tau_g = -g*np.array([[ 0      ],
+                                 [ m_p*l*s]])
             # B
             B = np.array([[ 1],
                           [ 0]])
