@@ -27,6 +27,6 @@ Random initial conditions and random goal.|
 ![](figures/lqr_cartpole.gif)|
 
 ## References:
+- Russ Tedrake's [Underactuated Robotics](http://underactuated.csail.mit.edu/) course at MIT.
 - Steve Brunton's [Control Bootcamp](https://www.youtube.com/playlist?list=PLMrJAkhIeNNR20Mz-VpzgfQs5zrYi085m) YouTube lecture series.
 - Mark Wilfried Mueller's [implementation of LQR in Python](https://www.mwm.im/lqr-controllers-with-python/).
-- Russ Tedrake's [Underactuated Robotics](http://underactuated.csail.mit.edu/) course at MIT.
