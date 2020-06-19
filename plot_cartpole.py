@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import matplotlib.lines as mlines # For drawing lines
 import matplotlib.patches as mpatches # For drawing rectangles, circles etc.
 from matplotlib import animation # For animating
-from matplotlib import interactive
 
 def draw_cartpole(ax, goal, x, theta, M, L):
     """
@@ -34,9 +33,8 @@ def draw_cartpole(ax, goal, x, theta, M, L):
     W = 0.4*sqrt(M) # cart width
     H = 0.25*sqrt(M) # cart height
     # Positions
-    y = 0 # cart vertical position
-    pole_x = x + L*sin(theta)
-    pole_y = y - L*cos(theta)
+    pole_x = cart_x + L*sin(theta)
+    pole_y = cart_y - L*cos(theta)
 
     # Shapes
     # Draw goal
@@ -44,7 +42,7 @@ def draw_cartpole(ax, goal, x, theta, M, L):
     # Draw cart
     artists.append(ax.add_patch(mpatches.Rectangle([cart_x - W/2, cart_y - H/2], W, H, facecolor=[0, 0, 0], edgecolor='k', linewidth=1.5)))
     # Draw pole
-    artists.append(ax.add_line(mlines.Line2D([cart_x, pole_x], [y + (2*(H/2))/3, pole_y], color=[.8,.6,.4], lw=6, zorder=1)))
+    artists.append(ax.add_line(mlines.Line2D([cart_x, pole_x], [cart_y + (2*(H/2))/3, pole_y], color=[.8,.6,.4], lw=6, zorder=1)))
     # Draw pole joint/axis
     artists.append(ax.add_patch(mpatches.Circle([cart_x, cart_y + (2*(H/2))/3], .08, facecolor=[.5, .5, .8], zorder=2)))
 
