@@ -72,7 +72,7 @@ def animate(goal, x, theta, T, m_c, l):
                                                             blit=True,
                                                             repeat=False)
         plt.show(block=False)
-        plt.pause(3.5)
+        plt.pause(T/FPS)
         plt.close()
     except:
         exit()
